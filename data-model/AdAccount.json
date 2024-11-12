@@ -1,1 +1,197 @@
-
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "GoogleAdsAccount",
+    "description": "Represents a Google Ads customer account",
+    "type": "object",
+    "required":
+    [
+        "id",
+        "resource_name"
+    ],
+    "properties":
+    {
+        "id":
+        {
+            "type": "string",
+            "description": "The ID of the customer without hyphens"
+        },
+        "resource_name":
+        {
+            "type": "string",
+            "description": "The resource name of the customer",
+            "pattern": "^customers/[0-9]+$"
+        },
+        "descriptive_name":
+        {
+            "type": "string",
+            "description": "Optional descriptive name for the customer account"
+        },
+        "currency_code":
+        {
+            "type": "string",
+            "description": "The currency in which this account operates (ISO 4217)",
+            "pattern": "^[A-Z]{3}$"
+        },
+        "time_zone":
+        {
+            "type": "string",
+            "description": "The time zone in which this account operates"
+        },
+        "status":
+        {
+            "type": "string",
+            "enum":
+            [
+                "ENABLED",
+                "CANCELED",
+                "SUSPENDED",
+                "CLOSED"
+            ],
+            "description": "The status of this customer account"
+        },
+        "manager":
+        {
+            "type": "boolean",
+            "description": "Whether this customer is a manager account"
+        },
+        "test_account":
+        {
+            "type": "boolean",
+            "description": "Whether this is a test account"
+        },
+        "auto_tagging_enabled":
+        {
+            "type": "boolean",
+            "description": "Whether auto-tagging is enabled for this account"
+        },
+        "billing_setup":
+        {
+            "type": "object",
+            "properties":
+            {
+                "id":
+                {
+                    "type": "string",
+                    "description": "The billing setup ID"
+                },
+                "status":
+                {
+                    "type": "string",
+                    "enum":
+                    [
+                        "PENDING",
+                        "APPROVED",
+                        "CANCELLED"
+                    ],
+                    "description": "Status of the billing setup"
+                },
+                "payments_account_info":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "payments_account_id":
+                        {
+                            "type": "string",
+                            "description": "Payments account ID"
+                        },
+                        "payments_account_name":
+                        {
+                            "type": "string",
+                            "description": "Payments account name"
+                        },
+                        "payments_profile_id":
+                        {
+                            "type": "string",
+                            "description": "Payments profile ID"
+                        }
+                    }
+                }
+            }
+        },
+        "optimization_score":
+        {
+            "type": "number",
+            "description": "The optimization score of the customer",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "tracking":
+        {
+            "type": "object",
+            "properties":
+            {
+                "conversion_tracking_setting":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "conversion_tracking_id":
+                        {
+                            "type": "string",
+                            "description": "Conversion tracking ID"
+                        },
+                        "cross_account_conversion_tracking_id":
+                        {
+                            "type": "string",
+                            "description": "Cross-account conversion tracking ID"
+                        }
+                    }
+                },
+                "remarketing_setting":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "google_global_site_tag":
+                        {
+                            "type": "string",
+                            "description": "Global site tag"
+                        }
+                    }
+                }
+            }
+        },
+        "pay_per_conversion_eligibility_failure_reasons":
+        {
+            "type": "array",
+            "items":
+            {
+                "type": "string",
+                "enum":
+                [
+                    "NOT_ENOUGH_CONVERSIONS",
+                    "CONVERSION_LAG_TOO_HIGH",
+                    "HAS_CAMPAIGN_WITH_SHARED_BUDGET",
+                    "HAS_UPLOAD_CLICKS_CONVERSION",
+                    "AVERAGE_DAILY_SPEND_TOO_HIGH",
+                    "ANALYSIS_NOT_COMPLETE",
+                    "OTHER"
+                ]
+            },
+            "description": "Reasons why the account is not eligible for pay per conversion"
+        },
+        "call_reporting":
+        {
+            "type": "object",
+            "properties":
+            {
+                "call_reporting_enabled":
+                {
+                    "type": "boolean",
+                    "description": "Whether call reporting is enabled"
+                },
+                "call_conversion_reporting_enabled":
+                {
+                    "type": "boolean",
+                    "description": "Whether call conversion reporting is enabled"
+                },
+                "call_conversion_action":
+                {
+                    "type": "string",
+                    "description": "Resource name of the conversion action for call conversions"
+                }
+            }
+        }
+    }
+}
