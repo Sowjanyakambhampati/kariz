@@ -1,0 +1,344 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GoogleAd[]",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/GoogleAd"
+  },
+  "definitions": {
+    "GoogleAd": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "resource_name": {
+          "type": "string",
+          "description": "The resource name of the ad. Format: customers/{customer_id}/ads/{ad_id}"
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the ad"
+        },
+        "ad_group_id": {
+          "type": "string",
+          "description": "The ID of the ad group this ad belongs to"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the ad"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "description": "The status of the ad"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "UNKNOWN",
+            "TEXT_AD",
+            "EXPANDED_TEXT_AD",
+            "RESPONSIVE_SEARCH_AD",
+            "CALL_AD",
+            "EXPANDED_DYNAMIC_SEARCH_AD",
+            "RESPONSIVE_DISPLAY_AD",
+            "LOCAL_AD",
+            "HOTEL_AD",
+            "SHOPPING_SMART_AD",
+            "SHOPPING_PRODUCT_AD",
+            "VIDEO_AD",
+            "IMAGE_AD",
+            "LEGACY_RESPONSIVE_DISPLAY_AD",
+            "APP_AD",
+            "LEGACY_APP_INSTALL_AD",
+            "HTML5_UPLOAD_AD",
+            "DYNAMIC_HTML5_AD",
+            "APP_ENGAGEMENT_AD"
+          ],
+          "description": "The type of the ad"
+        },
+        "final_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The list of possible final URLs after all cross-domain redirects"
+        },
+        "final_mobile_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of possible final mobile URLs after all cross-domain redirects"
+        },
+        "tracking_url_template": {
+          "type": "string",
+          "description": "URL template for constructing a tracking URL"
+        },
+        "url_custom_parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responsive_search_ad": {
+          "type": "object",
+          "properties": {
+            "headlines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "pinned_field": {
+                    "type": "string",
+                    "enum": [
+                      "UNSPECIFIED",
+                      "UNKNOWN",
+                      "HEADLINE_1",
+                      "HEADLINE_2",
+                      "HEADLINE_3"
+                    ]
+                  }
+                }
+              },
+              "maxItems": 15
+            },
+            "descriptions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "pinned_field": {
+                    "type": "string",
+                    "enum": [
+                      "UNSPECIFIED",
+                      "UNKNOWN",
+                      "DESCRIPTION_1",
+                      "DESCRIPTION_2"
+                    ]
+                  }
+                }
+              },
+              "maxItems": 4
+            },
+            "path1": {
+              "type": "string"
+            },
+            "path2": {
+              "type": "string"
+            }
+          }
+        },
+        "responsive_display_ad": {
+          "type": "object",
+          "properties": {
+            "marketing_images": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdImage"
+              }
+            },
+            "square_marketing_images": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdImage"
+              }
+            },
+            "logo_images": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdImage"
+              }
+            },
+            "headlines": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "long_headline": {
+              "type": "string"
+            },
+            "descriptions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "business_name": {
+              "type": "string"
+            },
+            "call_to_action_text": {
+              "type": "string"
+            },
+            "price_prefix": {
+              "type": "string"
+            },
+            "promo_text": {
+              "type": "string"
+            }
+          }
+        },
+        "video_ad": {
+          "type": "object",
+          "properties": {
+            "video_id": {
+              "type": "string"
+            },
+            "in_stream": {
+              "type": "object",
+              "properties": {
+                "action_button_label": {
+                  "type": "string"
+                },
+                "action_headline": {
+                  "type": "string"
+                },
+                "companion_banner": {
+                  "$ref": "#/definitions/AdImage"
+                }
+              }
+            },
+            "bumper": {
+              "type": "object",
+              "properties": {
+                "companion_banner": {
+                  "$ref": "#/definitions/AdImage"
+                }
+              }
+            },
+            "out_stream": {
+              "type": "object",
+              "properties": {
+                "headline": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "device_preference": {
+          "type": "string",
+          "enum": [
+            "MOBILE",
+            "ALL"
+          ]
+        },
+        "added_by_google_ads": {
+          "type": "boolean",
+          "description": "Indicates if this ad was automatically added by Google Ads"
+        },
+        "system_managed_resource_source": {
+          "type": "string",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "AD_VARIATIONS"
+          ]
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Labels attached to the ad"
+        },
+        "policy_summary": {
+          "type": "object",
+          "properties": {
+            "review_status": {
+              "type": "string",
+              "enum": [
+                "UNSPECIFIED",
+                "UNKNOWN",
+                "REVIEW_IN_PROGRESS",
+                "REVIEWED",
+                "PENDING_REVIEW",
+                "ELIGIBLE"
+              ]
+            },
+            "approval_status": {
+              "type": "string",
+              "enum": [
+                "UNSPECIFIED",
+                "UNKNOWN",
+                "APPROVED",
+                "DISAPPROVED",
+                "PENDING_REVIEW",
+                "UNDER_REVIEW"
+              ]
+            }
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The datetime when the ad was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The datetime when the ad was last updated"
+        }
+      },
+      "required": [
+        "id",
+        "resource_name",
+        "ad_group_id",
+        "type",
+        "status"
+      ]
+    },
+    "AdImage": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "description": "The resource name of the image asset"
+        },
+        "mime_type": {
+          "type": "string",
+          "enum": [
+            "IMAGE_JPEG",
+            "IMAGE_PNG",
+            "IMAGE_GIF"
+          ]
+        },
+        "full_size": {
+          "type": "object",
+          "properties": {
+            "width_pixels": {
+              "type": "integer"
+            },
+            "height_pixels": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
