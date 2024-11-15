@@ -1,0 +1,348 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GoogleCampaign[]",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/GoogleCampaign"
+  },
+  "definitions": {
+    "GoogleCampaign": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "resource_name": {
+          "type": "string",
+          "description": "The resource name of the campaign. Format: customers/{customer_id}/campaigns/{campaign_id}"
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the campaign"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the campaign"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "description": "The status of the campaign"
+        },
+        "serving_status": {
+          "type": "string",
+          "enum": [
+            "SERVING",
+            "NOT_SERVING",
+            "ENDED",
+            "PENDING",
+            "SUSPENDED"
+          ],
+          "description": "The serving status of the campaign"
+        },
+        "campaign_budget": {
+          "type": "object",
+          "properties": {
+            "resource_name": {
+              "type": "string",
+              "description": "Reference to the campaign budget. Format: customers/{customer_id}/campaignBudgets/{budget_id}"
+            },
+            "amount_micros": {
+              "type": "integer",
+              "description": "The amount of budget in micros"
+            },
+            "delivery_method": {
+              "type": "string",
+              "enum": [
+                "STANDARD",
+                "ACCELERATED"
+              ],
+              "description": "Budget delivery method"
+            },
+            "period": {
+              "type": "string",
+              "enum": [
+                "DAILY",
+                "TOTAL"
+              ],
+              "description": "Budget period"
+            }
+          }
+        },
+        "ad_serving_optimization_status": {
+          "type": "string",
+          "enum": [
+            "OPTIMIZE",
+            "CONVERSION_OPTIMIZE",
+            "ROTATE",
+            "ROTATE_INDEFINITELY",
+            "UNAVAILABLE"
+          ],
+          "description": "The ad serving optimization status of the campaign"
+        },
+        "advertising_channel_type": {
+          "type": "string",
+          "enum": [
+            "SEARCH",
+            "DISPLAY",
+            "SHOPPING",
+            "HOTEL",
+            "VIDEO",
+            "MULTI_CHANNEL",
+            "LOCAL",
+            "SMART",
+            "PERFORMANCE_MAX",
+            "LOCAL_SERVICES",
+            "DISCOVERY",
+            "TRAVEL"
+          ],
+          "description": "The primary serving target for ads within the campaign"
+        },
+        "advertising_channel_sub_type": {
+          "type": "string",
+          "enum": [
+            "SEARCH_MOBILE_APP",
+            "DISPLAY_MOBILE_APP",
+            "SEARCH_EXPRESS",
+            "DISPLAY_EXPRESS",
+            "SHOPPING_SMART_ADS",
+            "DISPLAY_GMAIL_AD",
+            "DISPLAY_SMART_CAMPAIGN",
+            "VIDEO_OUTSTREAM",
+            "VIDEO_ACTION",
+            "VIDEO_NON_SKIPPABLE",
+            "APP_CAMPAIGN",
+            "APP_CAMPAIGN_FOR_ENGAGEMENT",
+            "LOCAL_CAMPAIGN",
+            "SHOPPING_COMPARISON_LISTING_ADS",
+            "SMART_CAMPAIGN",
+            "VIDEO_SEQUENCE"
+          ],
+          "description": "Optional refinement to advertising_channel_type"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Date when campaign starts in YYYY-MM-DD format",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "Date when campaign ends in YYYY-MM-DD format",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "targeting_settings": {
+          "type": "object",
+          "properties": {
+            "target_restrictions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "targeting_dimension": {
+                    "type": "string",
+                    "enum": [
+                      "KEYWORD",
+                      "AUDIENCE",
+                      "PLACEMENT",
+                      "LOCATION",
+                      "DEVICE",
+                      "LANGUAGE"
+                    ]
+                  },
+                  "bid_only": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "geo_targeting": {
+          "type": "object",
+          "properties": {
+            "positive_geo_target_type": {
+              "type": "string",
+              "enum": [
+                "PRESENCE_OR_INTEREST",
+                "PRESENCE",
+                "INTEREST"
+              ]
+            },
+            "negative_geo_target_type": {
+              "type": "string",
+              "enum": [
+                "PRESENCE_OR_INTEREST",
+                "PRESENCE",
+                "INTEREST"
+              ]
+            },
+            "target_locations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "geo_target_constant": {
+                    "type": "string"
+                  },
+                  "location_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "network_settings": {
+          "type": "object",
+          "properties": {
+            "target_google_search": {
+              "type": "boolean",
+              "description": "Show ads on Google Search Network"
+            },
+            "target_search_network": {
+              "type": "boolean",
+              "description": "Show ads on Search Partners"
+            },
+            "target_content_network": {
+              "type": "boolean",
+              "description": "Show ads on Display Network"
+            },
+            "target_partner_search_network": {
+              "type": "boolean",
+              "description": "Show ads on Partner Networks"
+            }
+          }
+        },
+        "bidding_strategy": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "TARGET_CPA",
+                "TARGET_ROAS",
+                "MAXIMIZE_CONVERSIONS",
+                "MAXIMIZE_CONVERSION_VALUE",
+                "MANUAL_CPC",
+                "MANUAL_CPV",
+                "MANUAL_CPM",
+                "TARGET_IMPRESSION_SHARE"
+              ]
+            },
+            "target_cpa_micros": {
+              "type": "integer"
+            },
+            "target_roas": {
+              "type": "number"
+            },
+            "target_impression_share_location": {
+              "type": "string",
+              "enum": [
+                "ANYWHERE_ON_PAGE",
+                "TOP_OF_PAGE",
+                "ABSOLUTE_TOP_OF_PAGE"
+              ]
+            }
+          }
+        },
+        "experiment_type": {
+          "type": "string",
+          "enum": [
+            "BASE",
+            "DRAFT",
+            "EXPERIMENT"
+          ],
+          "description": "The experiment type of the campaign"
+        },
+        "url_expansion_opt_out": {
+          "type": "boolean",
+          "description": "Whether to opt out of URL expansion"
+        },
+        "selective_optimization": {
+          "type": "object",
+          "properties": {
+            "conversion_actions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The selected conversion actions for optimizations"
+            }
+          }
+        },
+        "tracking_settings": {
+          "type": "object",
+          "properties": {
+            "tracking_url": {
+              "type": "string",
+              "description": "The tracking URL template"
+            },
+            "final_url_suffix": {
+              "type": "string",
+              "description": "Final URL suffix for tracking"
+            }
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Labels attached to the campaign"
+        },
+        "frequency_caps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "object",
+                "properties": {
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "AD_GROUP_AD",
+                      "AD_GROUP",
+                      "CAMPAIGN"
+                    ]
+                  },
+                  "event_type": {
+                    "type": "string",
+                    "enum": [
+                      "IMPRESSION",
+                      "VIDEO_VIEW"
+                    ]
+                  },
+                  "time_unit": {
+                    "type": "string",
+                    "enum": [
+                      "DAY",
+                      "WEEK",
+                      "MONTH"
+                    ]
+                  }
+                }
+              },
+              "cap": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "resource_name",
+        "name",
+        "status",
+        "advertising_channel_type"
+      ]
+    }
+  }
+}
+
+
+
+
