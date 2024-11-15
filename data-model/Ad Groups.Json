@@ -1,0 +1,255 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GoogleAdGroup[]",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/GoogleAdGroup"
+  },
+  "definitions": {
+    "GoogleAdGroup": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "resource_name": {
+          "type": "string",
+          "description": "The resource name of the ad group. Format: customers/{customer_id}/adGroups/{ad_group_id}"
+        },
+        "id": {
+          "type": "string",
+          "description": "The ID of the ad group"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the ad group"
+        },
+        "campaign": {
+          "type": "string",
+          "description": "The resource name of the campaign the ad group belongs to"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "ID of the campaign this ad group belongs to"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "description": "The status of the ad group"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "UNKNOWN",
+            "SEARCH_STANDARD",
+            "DISPLAY_STANDARD",
+            "SHOPPING_PRODUCT_ADS",
+            "HOTEL_ADS",
+            "SHOPPING_SMART_ADS",
+            "VIDEO_BUMPER",
+            "VIDEO_TRUE_VIEW_IN_STREAM",
+            "VIDEO_TRUE_VIEW_IN_DISPLAY",
+            "VIDEO_NON_SKIPPABLE_IN_STREAM",
+            "VIDEO_OUTSTREAM",
+            "SEARCH_DYNAMIC_ADS",
+            "SHOPPING_COMPARISON_LISTING_ADS",
+            "PROMOTED_HOTEL_ADS",
+            "VIDEO_RESPONSIVE",
+            "VIDEO_EFFICIENT_REACH"
+          ],
+          "description": "The type of the ad group"
+        },
+        "ad_rotation_mode": {
+          "type": "string",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "OPTIMIZE",
+            "ROTATE_FOREVER"
+          ],
+          "description": "The ad rotation mode of the ad group"
+        },
+        "tracking_url_template": {
+          "type": "string",
+          "description": "URL template for constructing a tracking URL"
+        },
+        "url_custom_parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "Custom parameters for the tracking URL template"
+        },
+        "targeting_setting": {
+          "type": "object",
+          "properties": {
+            "target_restrictions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "targeting_dimension": {
+                    "type": "string",
+                    "enum": [
+                      "KEYWORD",
+                      "AUDIENCE",
+                      "PLACEMENT",
+                      "AGE_RANGE",
+                      "GENDER",
+                      "LOCATION",
+                      "DEVICE",
+                      "INCOME_RANGE",
+                      "PARENTAL_STATUS",
+                      "PRODUCT_CHANNEL",
+                      "PRODUCT_CHANNEL_EXCLUSIVITY",
+                      "PRODUCT_CONDITION",
+                      "WEBPAGE"
+                    ]
+                  },
+                  "bid_only": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Settings for targeting options"
+        },
+        "effective_target_roas": {
+          "type": "number",
+          "description": "The target return on ad spend (ROAS) override for this ad group"
+        },
+        "effective_target_cpa_micros": {
+          "type": "integer",
+          "description": "The target cost per acquisition (CPA) override for this ad group in micros"
+        },
+        "base_ad_group": {
+          "type": "string",
+          "description": "The resource name of the base ad group from which this draft/experiment ad group was created"
+        },
+        "optimization_goal_setting": {
+          "type": "object",
+          "properties": {
+            "optimization_goal_types": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OPTIMIZE_FOR_CALL_CONVERSIONS",
+                  "OPTIMIZE_FOR_CONVERSION_VALUE",
+                  "OPTIMIZE_FOR_CONVERSIONS",
+                  "OPTIMIZE_FOR_ENHANCED_CPC"
+                ]
+              }
+            }
+          }
+        },
+        "audience_setting": {
+          "type": "object",
+          "properties": {
+            "use_audience_grouped": {
+              "type": "boolean",
+              "description": "Whether to use audience grouped targeting"
+            }
+          }
+        },
+        "excluded_parent_asset_field_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "HEADLINE",
+              "DESCRIPTION",
+              "CALL_TO_ACTION_SELECTION",
+              "MARKETING_IMAGE",
+              "MEDIA_BUNDLE",
+              "YOUTUBE_VIDEO",
+              "BUSINESS_NAME",
+              "LOGO",
+              "CALL_TO_ACTION",
+              "LONG_HEADLINE",
+              "SQUARE_MARKETING_IMAGE",
+              "PORTRAIT_MARKETING_IMAGE",
+              "LEAD_FORM"
+            ]
+          },
+          "description": "Asset field types that are excluded from this ad group's asset group"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Labels attached to the ad group"
+        },
+        "bidding": {
+          "type": "object",
+          "properties": {
+            "target_cpa": {
+              "type": "object",
+              "properties": {
+                "target_cpa_micros": {
+                  "type": "integer",
+                  "description": "Target CPA in micros"
+                }
+              }
+            },
+            "target_roas": {
+              "type": "object",
+              "properties": {
+                "target_roas": {
+                  "type": "number",
+                  "description": "Target ROAS value"
+                }
+              }
+            },
+            "manual_cpc": {
+              "type": "object",
+              "properties": {
+                "enhanced_cpc_enabled": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "manual_cpm": {
+              "type": "object"
+            },
+            "manual_cpv": {
+              "type": "object"
+            }
+          },
+          "description": "Bidding configuration for the ad group"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The datetime when the ad group was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The datetime when the ad group was last updated"
+        }
+      },
+      "required": [
+        "id",
+        "resource_name",
+        "name",
+        "campaign_id",
+        "status",
+        "type"
+      ]
+    }
+  }
+}
